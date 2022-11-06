@@ -15,7 +15,7 @@ export const useHttp = () => {
             }
 
             const data = await response.json();
-
+            console.log('request in HTML.hook', data);
             return data;
         } catch(e) {
             // setProcess('error');
@@ -26,7 +26,7 @@ export const useHttp = () => {
     // const clearError = useCallback(() => {
         // setProcess('loading');
     // }, []);
-
+    
     return {request, 
             // clearError, 
             // process, 
