@@ -1,29 +1,49 @@
 {
   "heroes": [
     {
-      "id": 1,
-      "name": "Первый герой",
-      "description": "Первый герой в рейтинге!",
+      "id": "be55b1d5-58c5-4607-b3f5-7040bf5fa644",
+      "name": "Кент 1",
+      "description": "Супер пук",
       "element": "fire"
     },
     {
-      "id": 2,
-      "name": "Неизвестный герой",
-      "description": "Скрывающийся в тени",
+      "id": "a78b95e6-94a0-40c4-b83d-f2573e757919",
+      "name": "Мега Нига",
+      "description": "Курит шмаль",
       "element": "wind"
     },
     {
-      "id": 3,
-      "name": "Морской герой",
-      "description": "Как аквамен, но не из DC",
-      "element": "water"
+      "id": "d64a0ba7-1f9c-4223-905b-00ac59cb7804",
+      "name": "Тусовщик ДИ",
+      "description": "Не спать всю ночь",
+      "element": "earth"
     }
   ],
   "filters": [
-    "all",
-    "fire",
-    "water",
-    "wind",
-    "earth"
+      {
+        "en": "all",
+        "ru": "Все",
+        "elementClassName": "bg-dark bg-gradient"
+      },
+      {
+        "en": "fire",
+        "ru": "Огонь",
+        "elementClassName": "bg-danger bg-gradient"
+      },
+      {
+        "en": "water",
+        "ru": "Вода",
+        "elementClassName": "bg-primary bg-gradient"
+      },
+      {
+        "en": "wind",
+        "ru": "Вода",
+        "elementClassName": "bg-success bg-gradien"
+      },
+      {
+        "en": "earth",
+        "ru": "Земля",
+        "elementClassName": "bg-warning bg-gradient"
+      }
   ]
 }
