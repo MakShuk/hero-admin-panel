@@ -31,13 +31,13 @@ export const newHeroe = (heroes, heroe) => {
   };
 };
 
-export const FiltersFetching = () => {
+export const filtersFetching = () => {
   return {
     type: 'FILTERS_FETCHING',
   };
 };
 
-export const FiltersFetched = (filters) => {
+export const filtersFetched = (filters) => {
   return {
     type: 'FILTERS_FETCHED',
     payload: filters,

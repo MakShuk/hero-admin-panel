@@ -23,27 +23,27 @@
       {
         "en": "all",
         "ru": "Все",
-        "elementClassName": "bg-dark bg-gradient"
+        "elementClassName": "dark"
       },
       {
         "en": "fire",
         "ru": "Огонь",
-        "elementClassName": "bg-danger bg-gradient"
+        "elementClassName": "danger"
       },
       {
         "en": "water",
         "ru": "Вода",
-        "elementClassName": "bg-primary bg-gradient"
+        "elementClassName": "primary"
       },
       {
         "en": "wind",
         "ru": "Вода",
-        "elementClassName": "bg-success bg-gradien"
+        "elementClassName": "success"
       },
       {
         "en": "earth",
         "ru": "Земля",
-        "elementClassName": "bg-warning bg-gradient"
+        "elementClassName": "secondary"
       }
   ]
 }
