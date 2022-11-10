@@ -49,3 +49,10 @@ export const filtersFetchingError = () => {
     type: 'FILTERS_FETCHING_ERROR',
   };
 };
+
+export const filtrateHeroe = (filter) => {
+  return {
+    type: 'FILTRATE_HEROE',
+    payload: filter,
+  };
+};

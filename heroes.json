@@ -17,33 +17,51 @@
       "name": "Тусовщик ДИ",
       "description": "Не спать всю ночь",
       "element": "earth"
+    },
+    {
+      "id": "72a13836-efdf-4e4d-beb2-c250c4f584b7",
+      "name": "Сосисочник",
+      "description": "Варит сосиски",
+      "element": "wind"
+    },
+    {
+      "id": "fcd52895-d311-4047-b608-16fccdd67731",
+      "name": "Левый чел",
+      "description": "знает кого то из твоих друзей",
+      "element": "earth"
+    },
+    {
+      "id": "192dec58-29e4-40f0-9c0f-acb5acfe4e79",
+      "name": "Аква Чел",
+      "description": "Умеет делать лужу",
+      "element": "water"
     }
   ],
   "filters": [
-      {
-        "en": "all",
-        "ru": "Все",
-        "elementClassName": "dark"
-      },
-      {
-        "en": "fire",
-        "ru": "Огонь",
-        "elementClassName": "danger"
-      },
-      {
-        "en": "water",
-        "ru": "Вода",
-        "elementClassName": "primary"
-      },
-      {
-        "en": "wind",
-        "ru": "Вода",
-        "elementClassName": "success"
-      },
-      {
-        "en": "earth",
-        "ru": "Земля",
-        "elementClassName": "secondary"
-      }
+    {
+      "en": "all",
+      "ru": "Все",
+      "elementClassName": "dark"
+    },
+    {
+      "en": "fire",
+      "ru": "Огонь",
+      "elementClassName": "danger"
+    },
+    {
+      "en": "water",
+      "ru": "Вода",
+      "elementClassName": "primary"
+    },
+    {
+      "en": "wind",
+      "ru": "Воздух",
+      "elementClassName": "success"
+    },
+    {
+      "en": "earth",
+      "ru": "Земля",
+      "elementClassName": "secondary"
+    }
   ]
 }

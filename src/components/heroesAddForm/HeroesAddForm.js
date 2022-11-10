@@ -5,15 +5,9 @@ import { useHttp } from '../../hooks/http.hook';
 import { newHeroe } from '../../actions';
 import { useDispatch, useSelector } from 'react-redux';
 
-// Задача для этого компонента:
-
-// Усложненная задача:
-// Дополнительно:
-// Элементы <option></option> желательно сформировать на базе
-// данных из фильтров
 
 const HeroesAddForm = () => {
-  const { heroes } = useSelector((state) => state);
+  const { heroes, filters, filtersLoadingStatus } = useSelector((state) => state);
   const dispatch = useDispatch();
   const { request } = useHttp();
 
@@ -28,7 +22,30 @@ const HeroesAddForm = () => {
       .catch();
   };
 
-  
+  const createFilterList = (arr, loadingStatus) => {
+    
+    if (loadingStatus === 'loading') {
+      return <option>Загрузка...</option>;
+    } else if (loadingStatus === 'error') {
+      return <option>Ошибка загрузки</option>;
+    }
+    if (arr.length === 0) {
+      return <option>Фильтров нет</option>;
+    }
+    return arr.map(({ en, ru, elementClassName }, index) => {
+      if (en ==='all') {
+        ru = 'Ваберите элемент...'
+        en = ''
+    }
+        return (
+          <option key={index} value={en}>
+            {ru}
+          </option>
+        );
+    });
+  };
+
+  const element = createFilterList(filters, filtersLoadingStatus);
 
   return (
     <Formik
@@ -75,11 +92,7 @@ const HeroesAddForm = () => {
           </label>
 
           <Field className="form-select" id="element" name="element" as="select">
-            <option value="">Я владею элементом...</option>
-            <option value="fire">Огонь</option>
-            <option value="water">Вода</option>
-            <option value="wind">Ветер</option>
-            <option value="earth">Земля</option>
+            {element}
           </Field>
           <ErrorMessage component="div" className="text-center text-danger" name="element" />
         </div>

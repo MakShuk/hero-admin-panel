@@ -3,6 +3,7 @@ const initialState = {
   heroesLoadingStatus: 'idle',
   filters: [],
   filtersLoadingStatus: 'idle',
+  enabledFilter: 'all'
 };
 
 const reducer = (state = initialState, action) => {
@@ -51,6 +52,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         filtersLoadingStatus: 'error',
       };
+    case 'FILTRATE_HEROE':
+      return {
+        ...state,
+        enabledFilter: action.payload,
+      };
+
     default:
       return state;
   }
