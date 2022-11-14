@@ -5,6 +5,8 @@ import { useHttp } from '../../hooks/http.hook';
 import { newHeroe } from '../../actions';
 import { useDispatch, useSelector } from 'react-redux';
 
+//добавть очистку формы
+
 
 const HeroesAddForm = () => {
   const { heroes, filters, filtersLoadingStatus } = useSelector((state) => state);
@@ -18,7 +20,7 @@ const HeroesAddForm = () => {
     };
 
     request('http://localhost:3001/heroes', 'POST', JSON.stringify(newHeroeObj))
-      .then(dispatch(newHeroe(heroes, newHeroeObj)))
+      .then(dispatch(newHeroe(newHeroeObj)))
       .catch();
   };
 

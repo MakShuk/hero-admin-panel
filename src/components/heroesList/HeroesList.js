@@ -1,6 +1,7 @@
 import { useHttp } from '../../hooks/http.hook';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import {
   heroesFetching,
@@ -11,7 +12,11 @@ import {
 import HeroesListItem from '../heroesListItem/HeroesListItem';
 import Spinner from '../spinner/Spinner';
 
+import './heroesList.scss';
 
+
+// добавить юз колбек
+// переделываем action на редьюсер
 
 const HeroesList = () => {
   const { heroes, heroesLoadingStatus, enabledFilter} = useSelector((state) => state);
@@ -29,7 +34,7 @@ const HeroesList = () => {
 
   const onDeleteItem = (id) => {
       request(`http://localhost:3001/heroes/${id}`, 'DELETE')
-      .then(dispatch(heroeDelete(heroes, id)))
+      .then(dispatch(heroeDelete(id)))
       .catch(() => dispatch(heroesFetchingError()));
   };
 
@@ -46,12 +51,9 @@ const HeroesList = () => {
 
     return arr.map(({ id, ...props }) => {
       return (
-        <HeroesListItem
-          key={id}
-          id={id}
-          onDeleteItem={onDeleteItem}
-          {...props}
-        />
+        <CSSTransition key={id} timeout={500} classNames="hero">
+          <HeroesListItem key={id} id={id} onDeleteItem={onDeleteItem} {...props} />
+        </CSSTransition>
       );
     });
   };
@@ -60,7 +62,7 @@ const HeroesList = () => {
      return data.filter((item) => item.element === filter);
   };
   const elements = renderHeroesList(filterElement(heroes, enabledFilter));
-  return <ul>{elements}</ul>;
+  return <TransitionGroup component="ul">{elements}</TransitionGroup>;
 };
 
 export default HeroesList;

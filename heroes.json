@@ -1,40 +1,22 @@
 {
   "heroes": [
     {
-      "id": "be55b1d5-58c5-4607-b3f5-7040bf5fa644",
-      "name": "Кент 1",
-      "description": "Супер пук",
-      "element": "fire"
-    },
-    {
-      "id": "a78b95e6-94a0-40c4-b83d-f2573e757919",
-      "name": "Мега Нига",
-      "description": "Курит шмаль",
-      "element": "wind"
-    },
-    {
       "id": "d64a0ba7-1f9c-4223-905b-00ac59cb7804",
       "name": "Тусовщик ДИ",
       "description": "Не спать всю ночь",
       "element": "earth"
     },
     {
-      "id": "72a13836-efdf-4e4d-beb2-c250c4f584b7",
-      "name": "Сосисочник",
-      "description": "Варит сосиски",
+      "id": "8a34b3d1-4670-48d4-bf86-116a0c4ae358",
+      "name": "Крутой парень",
+      "description": "Дешёвые понты",
+      "element": "fire"
+    },
+    {
+      "id": "080fe928-f06e-4b7a-a664-8b60a7942221",
+      "name": "Подлиза",
+      "description": "Может лизнуть",
       "element": "wind"
-    },
-    {
-      "id": "fcd52895-d311-4047-b608-16fccdd67731",
-      "name": "Левый чел",
-      "description": "знает кого то из твоих друзей",
-      "element": "earth"
-    },
-    {
-      "id": "192dec58-29e4-40f0-9c0f-acb5acfe4e79",
-      "name": "Аква Чел",
-      "description": "Умеет делать лужу",
-      "element": "water"
     }
   ],
   "filters": [
