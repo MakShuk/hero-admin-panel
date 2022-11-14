@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 
 const HeroesAddForm = () => {
-  const { heroes, filters, filtersLoadingStatus } = useSelector((state) => state);
+  const {filters, filtersLoadingStatus } = useSelector((state) => state);
   const dispatch = useDispatch();
   const { request } = useHttp();
 
