@@ -35,9 +35,6 @@ const HeroesFilters = () => {
     return <h5 className="text-center mt-5">Ошибка загрузки</h5>;
   }
 
-  const onFilterHeroes = (e) => {
-     dispatch(filtrateHeroe(e.target.id))
-  };
 
   const renderFiltersList = (arr) => {
     if (arr.length === 0) {
@@ -50,9 +47,7 @@ const HeroesFilters = () => {
         <button
           key={index}
           id={en}
-          onClick={(e) => {
-            onFilterHeroes(e);
-          }}
+          onClick={() => dispatch(filtrateHeroe(en))}
           className={`btn btn-${elementClassName} ${active}`}
         >
           {ru}

@@ -17,12 +17,6 @@
       "name": "Подлиза",
       "description": "Может лизнуть",
       "element": "wind"
-    },
-    {
-      "id": "4868490f-a4d3-4eab-8bdb-df2d6f78254f",
-      "name": "4324",
-      "description": "23423",
-      "element": "water"
     }
   ],
   "filters": [
