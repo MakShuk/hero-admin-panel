@@ -11,18 +11,6 @@
       "name": "Крутой парень",
       "description": "Дешёвые понты",
       "element": "fire"
-    },
-    {
-      "id": "080fe928-f06e-4b7a-a664-8b60a7942221",
-      "name": "Подлиза",
-      "description": "Может лизнуть",
-      "element": "wind"
-    },
-    {
-      "id": "a14eed70-24fb-4ffc-9ce0-8538ef13e2a1",
-      "name": "Человек печенька",
-      "description": "Оставляет крошки в постели",
-      "element": "wind"
     }
   ],
   "filters": [

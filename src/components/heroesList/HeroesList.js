@@ -13,9 +13,17 @@ import './heroesList.scss';
 // переделываем action на редьюсер
 
 const HeroesList = () => {
-  const { heroes, heroesLoadingStatus, enabledFilter } = useSelector((state) => state);
+  const {heroesLoadingStatus} = useSelector((state) => state);
   const dispatch = useDispatch();
   const { request } = useHttp();
+
+  const filterElement = useSelector((state) => {
+    if (state.enabledFilter === 'all') {
+      return state.heroes;
+    } else {
+      return state.heroes.filter((item) => item.element === state.enabledFilter);
+    }
+  });
 
   useEffect(() => {
     dispatch(heroesFetching());
@@ -32,8 +40,7 @@ const HeroesList = () => {
       request(`http://localhost:3001/heroes/${id}`, 'DELETE')
         .then(dispatch(heroeDelete(id)))
         .catch(() => dispatch(heroesFetchingError()));
-      // eslint-disable-next-line
-    },
+    }, // eslint-disable-next-line
     [request]
   );
 
@@ -50,10 +57,6 @@ const HeroesList = () => {
   }
 
   const renderHeroesList = (arr) => {
-    if (arr.length === 0) {
-      return <h5 className="text-center mt-5">Героев пока нет</h5>;
-    }
-
     return arr.map(({ id, ...props }) => {
       return (
         <CSSTransition key={id} timeout={500} classNames="hero">
@@ -69,11 +72,16 @@ const HeroesList = () => {
       );
     });
   };
-  const filterElement = (data, filter) => {
+ /*  const filterElement = (data, filter) => {
     if (filter === 'all') return data;
     return data.filter((item) => item.element === filter);
-  };
-  const elements = renderHeroesList(filterElement(heroes, enabledFilter));
+  }; */
+
+  const elements = renderHeroesList(filterElement);
+  if (elements.length === 0) {
+    console.log('Героев пока нет');
+    return <h5 className="text-center mt-5">Героев пока нет</h5>;
+  }
   return <TransitionGroup component="ul">{elements}</TransitionGroup>;
 };
 
