@@ -17,6 +17,12 @@
       "name": "Подлиза",
       "description": "Может лизнуть",
       "element": "wind"
+    },
+    {
+      "id": "a14eed70-24fb-4ffc-9ce0-8538ef13e2a1",
+      "name": "Человек печенька",
+      "description": "Оставляет крошки в постели",
+      "element": "wind"
     }
   ],
   "filters": [

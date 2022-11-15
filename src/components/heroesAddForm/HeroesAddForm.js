@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useHttp } from '../../hooks/http.hook';
 import { newHeroe } from '../../actions';
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 
 //добавть очистку формы
 
@@ -12,6 +13,7 @@ const HeroesAddForm = () => {
   const {filters, filtersLoadingStatus } = useSelector((state) => state);
   const dispatch = useDispatch();
   const { request } = useHttp();
+  const [characterAdded, setCharacterAdded] = useState(false)
 
   const createNewHeroes = (formData) => {
     let newHeroeObj = {
@@ -21,6 +23,7 @@ const HeroesAddForm = () => {
 
     request('http://localhost:3001/heroes', 'POST', JSON.stringify(newHeroeObj))
       .then(dispatch(newHeroe(newHeroeObj)))
+      .then(setCharacterAdded(true))
       .catch();
   };
 
@@ -49,8 +52,9 @@ const HeroesAddForm = () => {
 
   const element = createFilterList(filters, filtersLoadingStatus);
 
-  return (
-    <Formik
+  const MainForm  = () => {
+    return (
+          <Formik
       initialValues={{
         name: '',
         description: '',
@@ -103,7 +107,24 @@ const HeroesAddForm = () => {
         </button>
       </Form>
     </Formik>
-  );
+    )
+  }
+
+  const СreateNewHeroesMassege  = () => {
+   return (
+     <div className="card shadow-lg mt-4 " style={{ height: '440px' }}>
+       <div className="card-body d-flex flex-column align-items-center justify-content-center">
+         <h4 className="card-text">Персонаж добавлен</h4>
+         <button className="btn btn-primary" onClick={() => setCharacterAdded(false)}>
+           Добавить еще одного
+         </button>
+       </div>
+     </div>
+   );
+  }
+
+  return !characterAdded ? <MainForm/> : <СreateNewHeroesMassege />;
+   
 };
 
 export default HeroesAddForm;
