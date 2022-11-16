@@ -4,13 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { filtersFetching, filtersFetched, filtersFetchingError, filtrateHeroe } from '../../actions';
 
 import Spinner from '../spinner/Spinner';
-// Задача для этого компонента:
-// Создать состяни е фильтара
-// Создать метод обработчика фильтра
-// Наевсть обработчики при котрым будет вызватся функция изменяющая сотояние
+
 
 const HeroesFilters = () => {
-  const { filters, filtersLoadingStatus} = useSelector((state) => state);
+  const { filters, filtersLoadingStatus} = useSelector((state) => state.filters);
   const { request } = useHttp();
   const dispatch = useDispatch();
 

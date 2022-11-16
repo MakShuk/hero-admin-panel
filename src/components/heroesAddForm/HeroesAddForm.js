@@ -10,7 +10,7 @@ import { useState } from 'react';
 
 
 const HeroesAddForm = () => {
-  const {filters, filtersLoadingStatus } = useSelector((state) => state);
+  const {filters, filtersLoadingStatus } = useSelector((state) => state.filters);
   const dispatch = useDispatch();
   const { request } = useHttp();
   const [characterAdded, setCharacterAdded] = useState(false)

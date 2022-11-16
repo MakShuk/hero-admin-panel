@@ -2,28 +2,41 @@ import { useHttp } from '../../hooks/http.hook';
 import { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-
+import { createSelector } from 'reselect';
 import { heroesFetching, heroesFetched, heroesFetchingError, heroeDelete } from '../../actions';
 import HeroesListItem from '../heroesListItem/HeroesListItem';
 import Spinner from '../spinner/Spinner';
 
+
 import './heroesList.scss';
 
-// добавить юз колбек
-// переделываем action на редьюсер
 
 const HeroesList = () => {
+ 
+const selectVelue = createSelector(
+  (state) => state.filters.enabledFilter,
+  (state) => state.heroes.heroes,
+  (filter, heroes) => {
+     if (filter === 'all') {
+       return heroes;
+     } else {
+       return heroes.filter((item) => item.element === filter);
+     }
+  }
+)
+
   const {heroesLoadingStatus} = useSelector((state) => state);
   const dispatch = useDispatch();
   const { request } = useHttp();
 
-  const filterElement = useSelector((state) => {
-    if (state.enabledFilter === 'all') {
-      return state.heroes;
+  /* const filterElement = useSelector((state) => {
+    if (state.filters.enabledFilter === 'all') {
+      return state.heroes.heroes;
     } else {
-      return state.heroes.filter((item) => item.element === state.enabledFilter);
+      return state.heroes.heroes.filter((item) => item.element === state.filters.enabledFilter);
     }
-  });
+  }); */
+   const filterElement = useSelector(selectVelue);
 
   useEffect(() => {
     dispatch(heroesFetching());

@@ -11,6 +11,12 @@
       "name": "Крутой парень",
       "description": "Дешёвые понты",
       "element": "fire"
+    },
+    {
+      "id": "9b8be8f3-ed1f-4409-8c09-d68d00403f48",
+      "name": "Кот Мотвей",
+      "description": "Знает где молоко",
+      "element": "water"
     }
   ],
   "filters": [
