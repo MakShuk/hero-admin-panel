@@ -3,56 +3,40 @@ import { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { createSelector } from 'reselect';
-import { heroesFetching, heroesFetched, heroesFetchingError, heroeDelete } from '../../actions';
+import { fetchHeroes, heroeDelete } from '../../actions';
 import HeroesListItem from '../heroesListItem/HeroesListItem';
 import Spinner from '../spinner/Spinner';
 
-
 import './heroesList.scss';
 
-
 const HeroesList = () => {
- 
-const selectVelue = createSelector(
-  (state) => state.filters.enabledFilter,
-  (state) => state.heroes.heroes,
-  (filter, heroes) => {
-     if (filter === 'all') {
-       return heroes;
-     } else {
-       return heroes.filter((item) => item.element === filter);
-     }
-  }
-)
-
-  const {heroesLoadingStatus} = useSelector((state) => state.heroes);
+  const selectVelue = createSelector(
+    (state) => state.filters.enabledFilter,
+    (state) => state.heroes.heroes,
+    (filter, heroes) => {
+      if (filter === 'all') {
+        return heroes;
+      } else {
+        return heroes.filter((item) => item.element === filter);
+      }
+    }
+  );
+  const { heroesLoadingStatus } = useSelector((state) => state.heroes);
   const dispatch = useDispatch();
   const { request } = useHttp();
 
-  /* const filterElement = useSelector((state) => {
-    if (state.filters.enabledFilter === 'all') {
-      return state.heroes.heroes;
-    } else {
-      return state.heroes.heroes.filter((item) => item.element === state.filters.enabledFilter);
-    }
-  }); */
-   const filterElement = useSelector(selectVelue);
+  const filterElement = useSelector(selectVelue);
 
   useEffect(() => {
-    dispatch('HEROES_FETCHING');
-    request('http://localhost:3001/heroes')
-      .then((data) => dispatch(heroesFetched(data)))
-      .catch(() => dispatch(heroesFetchingError()));
-
+    dispatch(fetchHeroes(request));
     // eslint-disable-next-line
   }, []);
 
   const onDeleteItem = useCallback(
     (id) => {
-      // Удаление персонажа по его id
       request(`http://localhost:3001/heroes/${id}`, 'DELETE')
         .then(dispatch(heroeDelete(id)))
-        .catch(() => dispatch(heroesFetchingError()));
+        .catch(() => console.log('Delete Eror'));
     }, // eslint-disable-next-line
     [request]
   );
@@ -85,10 +69,6 @@ const selectVelue = createSelector(
       );
     });
   };
- /*  const filterElement = (data, filter) => {
-    if (filter === 'all') return data;
-    return data.filter((item) => item.element === filter);
-  }; */
 
   const elements = renderHeroesList(filterElement);
   if (elements.length === 0) {
