@@ -1,24 +1,17 @@
 import { useHttp } from '../../hooks/http.hook';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { filtersFetching, filtersFetched, filtersFetchingError, filtrateHeroe } from '../../actions';
+import { fetchFilters, filtrateHeroe } from '../../actions';
 
 import Spinner from '../spinner/Spinner';
 
-
 const HeroesFilters = () => {
-  const { filters, filtersLoadingStatus} = useSelector((state) => state.filters);
+  const { filters, filtersLoadingStatus } = useSelector((state) => state.filters);
   const { request } = useHttp();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(filtersFetching());
-    request('http://localhost:3001/filters')
-      .then((data) => {
-        dispatch(filtersFetched(data));
-      })
-      .catch(() => dispatch(filtersFetchingError()));
-
+    dispatch(fetchFilters(request));
     // eslint-disable-next-line
   }, []);
 
@@ -31,7 +24,6 @@ const HeroesFilters = () => {
   } else if (filtersLoadingStatus === 'error') {
     return <h5 className="text-center mt-5">Ошибка загрузки</h5>;
   }
-
 
   const renderFiltersList = (arr) => {
     if (arr.length === 0) {
