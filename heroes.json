@@ -17,6 +17,12 @@
       "name": "Кот Мотвей",
       "description": "Знает где молоко",
       "element": "water"
+    },
+    {
+      "id": "d2315fcb-cc3a-4a22-be76-782f2b9fe12b",
+      "name": "Иван",
+      "description": "Знает где печеньки",
+      "element": "earth"
     }
   ],
   "filters": [
