@@ -1,18 +1,6 @@
 {
   "heroes": [
     {
-      "id": "d64a0ba7-1f9c-4223-905b-00ac59cb7804",
-      "name": "Тусовщик ДИ",
-      "description": "Не спать всю ночь",
-      "element": "earth"
-    },
-    {
-      "id": "8a34b3d1-4670-48d4-bf86-116a0c4ae358",
-      "name": "Крутой парень",
-      "description": "Дешёвые понты",
-      "element": "fire"
-    },
-    {
       "id": "9b8be8f3-ed1f-4409-8c09-d68d00403f48",
       "name": "Кот Мотвей",
       "description": "Знает где молоко",
@@ -23,6 +11,12 @@
       "name": "Иван",
       "description": "Знает где печеньки",
       "element": "earth"
+    },
+    {
+      "id": "62d6396c-d5a0-419b-b16b-19c9a68943ea",
+      "name": "Егор",
+      "description": "Шутит про говно",
+      "element": "fire"
     }
   ],
   "filters": [
