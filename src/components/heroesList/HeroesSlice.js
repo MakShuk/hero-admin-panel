@@ -5,8 +5,7 @@ const initialState = {
   heroes: [],
   heroesLoadingStatus: 'idle',
 };
-export const fetchHeroes = createAsyncThunk('heroes/fetchHeroes',
- () => {
+export const fetchHeroes = createAsyncThunk('heroes/fetchHeroes', () => {
   const { request } = useHttp();
   return request('http://localhost:3001/heroes');
 });
@@ -15,16 +14,7 @@ const heroesSlice = createSlice({
   name: 'heroes',
   initialState,
   reducers: {
-    // heroesFatching: (state) => {
-    //   state.heroesLoadingStatus = 'loading';
-    // },
-    // heroesFetched: (state, action) => {
-    //   state.heroesLoadingStatus = 'idle';
-    //   state.heroes = action.payload;
-    // },
-    // heroesFetchingError: (state) => {
-    //   state.heroesLoadingStatus = 'error';
-    // },
+
     newHeroe: (state, action) => {
       state.heroes.push(action.payload);
     },
@@ -34,18 +24,21 @@ const heroesSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-    .addCase(fetchHeroes.pending, state => {state.heroesLoadingStatus = 'loading)'})
-    .addCase(fetchHeroes.fulfilled, (state,  actions) => {
-      state.heroesLoadingStatus = 'idle';
-      state.heroes = actions.payload;
-    })
-    .addCase(fetchHeroes.rejected, state => {
-      state.heroesLoadingStatus = 'error';
-    })
-    .addDefaultCase(() =>{})
-  }
+      .addCase(fetchHeroes.pending, (state) => {
+        state.heroesLoadingStatus = 'loading';
+      })
+      .addCase(fetchHeroes.fulfilled, (state, actions) => {
+        state.heroesLoadingStatus = 'idle';
+        state.heroes = actions.payload;
+      })
+      .addCase(fetchHeroes.rejected, (state) => {
+        state.heroesLoadingStatus = 'error';
+      })
+      .addDefaultCase(() => {});
+  },
 });
 
 const { actions, reducer } = heroesSlice;
+
 export default reducer;
-export const { heroesFatching, heroesFetched, heroesFetchingError, newHeroe, heroeDelete } = actions;
+export const { newHeroe, heroeDelete } = actions;

@@ -17,6 +17,12 @@
       "name": "Егор",
       "description": "Шутит про говно",
       "element": "fire"
+    },
+    {
+      "id": "81f9e340-2e8b-41f9-a6b2-739d380eb6a0",
+      "name": "Новой Человек Паук",
+      "description": "Жуткий засранец",
+      "element": "wind"
     }
   ],
   "filters": [

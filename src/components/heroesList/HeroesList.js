@@ -41,7 +41,6 @@ const HeroesList = () => {
     }, // eslint-disable-next-line
     [request]
   );
-
   if (heroesLoadingStatus === 'loading') {
     return <Spinner />;
   } else if (heroesLoadingStatus === 'error') {

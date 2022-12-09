@@ -14,5 +14,5 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(stringMiddleware),
   devTools: process.env.NODE_ENV !== 'prodaction',
 });
-
+  
 export default store;
