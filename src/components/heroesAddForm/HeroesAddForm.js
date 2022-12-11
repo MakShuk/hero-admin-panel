@@ -6,10 +6,13 @@ import { newHeroe } from '../heroesList/HeroesSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 
-//добавть очистку формы
+import store from '../../store';
+import { selectAll } from '../heroesFilters/FiltersSlice';
+
 
 const HeroesAddForm = () => {
-  const { filters, filtersLoadingStatus } = useSelector((state) => state.filters);
+  const { filtersLoadingStatus } = useSelector((state) => state.filters);
+  const filters = selectAll(store.getState());
   const dispatch = useDispatch();
   const { request } = useHttp();
   const [characterAdded, setCharacterAdded] = useState(false);
@@ -17,7 +20,7 @@ const HeroesAddForm = () => {
   const createNewHeroes = (formData) => {
     let newHeroeObj = {
       id: uuidv4(),
-      ...formData,
+      ...formData, 
     };
 
     request('http://localhost:3001/heroes', 'POST', JSON.stringify(newHeroeObj))

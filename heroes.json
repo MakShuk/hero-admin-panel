@@ -13,40 +13,45 @@
       "element": "earth"
     },
     {
-      "id": "62d6396c-d5a0-419b-b16b-19c9a68943ea",
-      "name": "Егор",
-      "description": "Шутит про говно",
-      "element": "fire"
-    },
-    {
       "id": "81f9e340-2e8b-41f9-a6b2-739d380eb6a0",
       "name": "Новой Человек Паук",
       "description": "Жуткий засранец",
       "element": "wind"
+    },
+    {
+      "id": "d9c68044-8eb9-4ceb-bc0f-fef92b385d79",
+      "name": "Vanday",
+      "description": "dark night",
+      "element": "fire"
     }
   ],
   "filters": [
     {
+      "id": "1",
       "en": "all",
       "ru": "Все",
       "elementClassName": "dark"
     },
     {
+      "id": "2",
       "en": "fire",
       "ru": "Огонь",
       "elementClassName": "danger"
     },
     {
+      "id": "3",
       "en": "water",
       "ru": "Вода",
       "elementClassName": "primary"
     },
     {
+      "id": "4",
       "en": "wind",
       "ru": "Воздух",
       "elementClassName": "success"
     },
     {
+      "id": "5",
       "en": "earth",
       "ru": "Земля",
       "elementClassName": "secondary"

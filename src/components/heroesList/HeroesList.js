@@ -2,31 +2,21 @@ import { useHttp } from '../../hooks/http.hook';
 import { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { createSelector } from '@reduxjs/toolkit';
 
-import { heroeDelete, fetchHeroes } from './HeroesSlice';
+
+import { heroeDelete, fetchHeroes, selectValue } from './HeroesSlice';
 import HeroesListItem from '../heroesListItem/HeroesListItem';
 import Spinner from '../spinner/Spinner';
 
 import './heroesList.scss';
 
 const HeroesList = () => {
-  const selectVelue = createSelector(
-    (state) => state.filters.enabledFilter,
-    (state) => state.heroes.heroes,
-    (filter, heroes) => {
-      if (filter === 'all') {
-        return heroes;
-      } else {
-        return heroes.filter((item) => item.element === filter);
-      }
-    }
-  );
+
   const { heroesLoadingStatus } = useSelector((state) => state.heroes);
   const dispatch = useDispatch();
   const { request } = useHttp();
 
-  const filterElement = useSelector(selectVelue);
+  const filterElement = useSelector(selectValue);
 
   useEffect(() => {
     dispatch(fetchHeroes());
@@ -75,7 +65,9 @@ const HeroesList = () => {
     console.log('Героев пока нет');
     return <h5 className="text-center mt-5">Героев пока нет</h5>;
   }
-  return <TransitionGroup component="ul">{elements}</TransitionGroup>;
+  return <TransitionGroup component="ul">
+    {elements}
+    </TransitionGroup>;
 };
 
 export default HeroesList;
