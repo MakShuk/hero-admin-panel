@@ -1,32 +1,24 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { v4 as uuidv4 } from 'uuid';
-import { useHttp } from '../../hooks/http.hook';
-import { newHeroe } from '../heroesList/HeroesSlice';
-import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 
 import store from '../../store';
 import { selectAll } from '../heroesFilters/FiltersSlice';
 
+import { useCreateHerowMutation } from '../../api/apiSlise';
 
 const HeroesAddForm = () => {
-  const { filtersLoadingStatus } = useSelector((state) => state.filters);
   const filters = selectAll(store.getState());
-  const dispatch = useDispatch();
-  const { request } = useHttp();
   const [characterAdded, setCharacterAdded] = useState(false);
+  const [createHerow, { isLoading }] = useCreateHerowMutation();
 
   const createNewHeroes = (formData) => {
     let newHeroeObj = {
       id: uuidv4(),
-      ...formData, 
+      ...formData,
     };
-
-    request('http://localhost:3001/heroes', 'POST', JSON.stringify(newHeroeObj))
-      .then(dispatch(newHeroe(newHeroeObj)))
-      .then(setCharacterAdded(true))
-      .catch();
+    createHerow(newHeroeObj).unwrap();
   };
 
   const createFilterList = (arr, loadingStatus) => {
@@ -51,7 +43,7 @@ const HeroesAddForm = () => {
     });
   };
 
-  const element = createFilterList(filters, filtersLoadingStatus);
+  const element = createFilterList(filters, isLoading);
 
   const MainForm = () => {
     return (

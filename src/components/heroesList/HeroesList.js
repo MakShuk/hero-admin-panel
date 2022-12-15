@@ -1,45 +1,37 @@
-import { useHttp } from '../../hooks/http.hook';
-import { useEffect, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useCallback, useMemo } from 'react';
+import { useSelector } from 'react-redux';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
-
-import { heroeDelete, fetchHeroes, selectValue } from './HeroesSlice';
 import HeroesListItem from '../heroesListItem/HeroesListItem';
 import Spinner from '../spinner/Spinner';
 
+import { useGetHeroisQuery, useDeleteHerowMutation } from '../../api/apiSlise';
 import './heroesList.scss';
 
 const HeroesList = () => {
+  const { data: herois = [], isLoading, isError } = useGetHeroisQuery();
+  const activeFilter = useSelector((state) => state.filters.enabledFilter);
 
-  const { heroesLoadingStatus } = useSelector((state) => state.heroes);
-  const dispatch = useDispatch();
-  const { request } = useHttp();
+  const filterElement = useMemo(() => {
+    const filtredHeroes = herois.slice();
+    if (activeFilter === 'all') {
+      return filtredHeroes;
+    } else {
+      return filtredHeroes.filter((item) => item.element === activeFilter);
+    }
+  }, [activeFilter, herois]);
 
-  const filterElement = useSelector(selectValue);
-
-  useEffect(() => {
-    dispatch(fetchHeroes());
-    // eslint-disable-next-line
-  }, []);
+  const [deleteHerow] = useDeleteHerowMutation();
 
   const onDeleteItem = useCallback(
     (id) => {
-      request(`http://localhost:3001/heroes/${id}`, 'DELETE')
-        .then(dispatch(heroeDelete(id)))
-        .catch(() => console.log('Delete Eror'));
+      deleteHerow(id);
     }, // eslint-disable-next-line
-    [request]
+    []
   );
-  if (heroesLoadingStatus === 'loading') {
+  if (isLoading) {
     return <Spinner />;
-  } else if (heroesLoadingStatus === 'error') {
-    return <h5 className="text-center mt-5">Ошибка загрузки</h5>;
-  }
-
-  if (heroesLoadingStatus === 'loading') {
-    return <Spinner />;
-  } else if (heroesLoadingStatus === 'error') {
+  } else if (isError) {
     return <h5 className="text-center mt-5">Ошибка загрузки</h5>;
   }
 
@@ -62,12 +54,9 @@ const HeroesList = () => {
 
   const elements = renderHeroesList(filterElement);
   if (elements.length === 0) {
-    console.log('Героев пока нет');
     return <h5 className="text-center mt-5">Героев пока нет</h5>;
   }
-  return <TransitionGroup component="ul">
-    {elements}
-    </TransitionGroup>;
+  return <TransitionGroup component="ul">{elements}</TransitionGroup>;
 };
 
 export default HeroesList;

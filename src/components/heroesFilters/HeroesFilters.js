@@ -12,7 +12,7 @@ const HeroesFilters = () => {
 
   const filters = selectAll(store.getState());
   const dispatch = useDispatch();
-  console.log(filtersLoadingStatus);
+
 
   useEffect(() => {
     dispatch(fetchFilters());
